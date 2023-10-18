@@ -6,6 +6,11 @@ using System.Collections.ObjectModel;
 using TestDG.Models;
 
 using System;
+using System.Security.Cryptography.X509Certificates;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace TestDG.ViewModels;
 
@@ -46,15 +51,48 @@ public class MainWindowViewModel : ReactiveObject
     DHumans = new SourceCache<Human, int>(t => t.Id);
 
     _ = DHumans.Connect()
-        .Filter(x=>x.Is==true)
         .ObserveOnDispatcher()
         .ObserveOn(RxApp.MainThreadScheduler)
+        .Filter(x => x.Is == true)
         .Bind(out _list)
-        .Subscribe();
+        .Subscribe(t => losdxx(t));
 
     ds.LsHumans.ForEach(x => DHumans.AddOrUpdate(x));
 
+    //this.WhenAnyObservable(this.DHumans.KeyValues.GetEnumerator().Current.Value.Is, x=>x.Changed)
+    //    DHumans.Items.WhenAnyValue(x => x.Select(z => z.Is)).WhenAnyValue(s => s).Subscribe(t => wwww(t));
 
+    //    this.WhenAnyValue(x=>x.DHumans.Items. )
+    //      .Subscribe(t => losdxx001(t));
+
+    this.PropertyChanged += MainWindowViewModel_PropertyChanged;
+    this.PropertyChanging += MainWindowViewModel_PropertyChanging;
+  }
+
+  private object qqq(IObservedChange<SourceCache<Human, int>, object> change)
+  {
+    return change;
+  }
+
+  private void losdxx001(IEnumerable<Human> t)
+  {
+    
+  }
+
+  private void losdxx(IChangeSet<Human, int> t)
+  {
+    
+  }
+
+  private void MainWindowViewModel_PropertyChanging(object sender, System.ComponentModel.PropertyChangingEventArgs e)
+  {
+    
+  }
+
+
+  private void MainWindowViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+  {
+   
   }
 
 }

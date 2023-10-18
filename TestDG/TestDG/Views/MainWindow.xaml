@@ -1,0 +1,75 @@
+﻿<Window x:Class="TestDG.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="{Binding Title}" Height="500" Width="800" >
+  <DockPanel>
+    <DockPanel DockPanel.Dock="Left">
+      <StackPanel Orientation="Vertical">
+        <TextBlock Text="Left"/>
+        <DataGrid  Margin="5, 0, 0, 0"
+                     FontSize="15"
+                     VerticalAlignment="Top"
+                     SelectedItem="{Binding SelectedNameId, Mode=TwoWay}"                  
+                     ItemsSource="{Binding ObHuman, UpdateSourceTrigger=PropertyChanged}"
+                     AutoGenerateColumns="False"  
+                     HeadersVisibility="None">
+          <DataGrid.Columns>
+            <DataGridCheckBoxColumn
+                Binding="{Binding Is, UpdateSourceTrigger=PropertyChanged}"
+                Header="is"/>
+            <DataGridTextColumn
+                Binding="{Binding Name}"
+                Header="Название"/>
+          </DataGrid.Columns>
+        </DataGrid>
+      </StackPanel>
+    </DockPanel>
+
+    <DockPanel DockPanel.Dock="Right">
+      <StackPanel Orientation="Vertical">
+        <TextBlock Text="Right"/>
+        <DataGrid  Margin="5, 0, 0, 0"
+                   FontSize="15"
+                   VerticalAlignment="Top"
+                   SelectedItem="{Binding SelectedNameId, Mode=TwoWay}"                  
+                   ItemsSource="{Binding DHumans.Items, UpdateSourceTrigger=PropertyChanged}"
+                   AutoGenerateColumns="False"  
+                   HeadersVisibility="None">
+          <DataGrid.Columns>
+            <DataGridCheckBoxColumn
+              Binding="{Binding Is, UpdateSourceTrigger=PropertyChanged}"
+              Header="is"/>
+            <DataGridTextColumn
+              Binding="{Binding Name}"
+              Header="Название"/>
+          </DataGrid.Columns>
+        </DataGrid>
+
+      </StackPanel>
+    </DockPanel>
+
+    <StackPanel Orientation="Vertical">
+      <TextBlock Text="Center" HorizontalAlignment="Center"/>
+      <DataGrid  Margin="5, 0, 0, 0"
+                 FontSize="15"
+                 VerticalAlignment="Top"
+                 SelectedItem="{Binding SelectedNameId, Mode=TwoWay}"                  
+                 ItemsSource="{Binding TxList, UpdateSourceTrigger=PropertyChanged}"
+                 AutoGenerateColumns="False"  
+                 HeadersVisibility="None">
+        <DataGrid.Columns>
+          <DataGridCheckBoxColumn
+            Binding="{Binding Is, UpdateSourceTrigger=PropertyChanged}"
+            Header="is"/>
+          <DataGridTextColumn
+            Binding="{Binding Name}"
+            Header="Название"/>
+        </DataGrid.Columns>
+      </DataGrid>
+
+    </StackPanel>
+
+  </DockPanel>
+</Window>
